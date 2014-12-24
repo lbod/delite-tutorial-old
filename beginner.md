@@ -5,19 +5,18 @@ delite is a new JavaScript library born out of the [Dojo Toolkit Dijit framework
 This isn't a replacement per se but a repository to be used as the core building blocks for leveraging current and future standards
 in HTML, CSS & JavaScript to build reusable Web Components.
 
-It can be used on it's own but more likely used with other projects either from the [ibm-js repositories](https://github.com/ibm-js)
+It can be used on its own but more likely used with other projects either from the [ibm-js repositories](https://github.com/ibm-js)
 or other repositories.
 
 More information can be found on the [delite website](http://ibm-js.github.io/delite/) explaining the standards this library aims to conform to.
 
 ## Tutorial details
 In this tutorial you'll learn how to create your own custom elements, learn how to register them, learn how to use templates
-& learn how you can bind data. It's a beginner tutorial so we won't be delving too deep into what delite provides (yet!!!)
+and learn how you can bind data. It's a beginner tutorial so we won't be delving too deep into what delite provides (yet!!!)
 
 ## Getting started
 To quickly get started, we're using [https://github.com/ibm-js/generator-delite-element](https://github.com/ibm-js/generator-delite-element)
 to install the required dependencies and create a basic scaffold.
-These steps are already explained but we'll repeat that documentation using Yeoman to get started.
 
 ### create the scaffold
 
@@ -48,7 +47,7 @@ You'll be prompted to enter the widget package name & the name of the custom wid
     ? Do you want to use build version of delite package (instead of source version)? (n)
 
 ### A look through what's been generated
-Lets look through what Yeoman created, again this is just a boilerplate setup but here's the important parts.
+Let us look through what Yeoman created, again this is just a boilerplate setup but here are the important parts.
 
 We've created a new package named `title-package` for new widgets that we'll create.
 
@@ -70,11 +69,11 @@ Viewing the `./samples/TitleWidget.html` example HTML we can see we've (partly) 
 <title-widget id="element" value="The Title"></title-widget>
 ```
 For those who used the Dojo Toolkit Dijit framework previously, an important conceptual difference in delite is that the widget is the DOM node.
-Dijit widgets instead, had a property which referenced the DOM node.
+Dijit widgets instead had a property which referenced the DOM node.
 
 ###Registering
 
-The `<title-widget>` element doesn't constitute a custom element on it's own, it first needs to go through a registration process which is achieved using
+The `<title-widget>` element doesn't constitute a custom element on its own; it first needs to go through a registration process which is achieved using
 the `delite/register` module. This is analogous to the HTML specification for registering custom elements
 i.e. `document.registerElement('title-widget');`
 
@@ -84,9 +83,9 @@ return register("title-widget", [HTMLElement, Widget], { .....
 ```
 
 This is an important concept which sometimes isn't clear at a first glance. You can add any non-standard tag to an HTML page and the browser HTML parser
-will not complain, this is because these elements will be defined as a native
+will not complain; this is because these elements will be defined as a native
 [`HTMLUnknownElement`](http://www.whatwg.org/specs/web-apps/current-work/multipage/dom.html#htmlunknownelement).
-To create a custom element it must be **upgraded** first, this is what `delite/register` does. `delite/register` supports browsers who natively
+To create a custom element it must be **upgraded** first; this is what `delite/register` does. `delite/register` supports browsers who natively
 support `document.registerElement` and those who don't.
 
 The registration process above using `delite/register`, creates a custom element by registering the tag name `"title-widget"` as the first
