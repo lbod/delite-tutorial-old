@@ -42,15 +42,15 @@ You'll be prompted to enter the widget package name & the name of the custom wid
     ? What is the name of your delite widget element package? (title-package)
     ? What do you want to call your delite widget element (must contain a dash)? (title-widget)
     ? Would you like your delite element to be built on a template? (n)
-    ? Would you like your delite element to providing theming capabilities? n
-    ? Will your delite element require string internationalization? n
-    ? Will your delite element require pointer management? n
-    ? Do you want to use build version of delite package (instead of source version)? n
+    ? Would you like your delite element to providing theming capabilities? (n)
+    ? Will your delite element require string internationalization? (n)
+    ? Will your delite element require pointer management? (n)
+    ? Do you want to use build version of delite package (instead of source version)? (n)
 
 ### A look through what's been generated
 Lets look through what Yeoman created, again this is just a boilerplate setup but here's the important parts.
 
-We've created a new package named `custom` for new widgets that we'll create.
+We've created a new package named `title-package` for new widgets that we'll create.
 
 - `./TitleWidget.js` - this is our widget module
 - `./TitleWidget/css/TitleWidget.css` - this is our widget css
@@ -237,15 +237,15 @@ Run Yeoman again to create our scaffold
 
     yo delite-element
 
-You'll again be prompted to enter the widget package name & the name of the custom widget element, set all the values as shown below:
+You'll again be prompted to enter the widget package name & the name of the custom widget element, enter the following choices shown in brackets below
 
     ? What is the name of your delite widget element package? (blogging-package)
     ? What do you want to call your delite widget element (must contain a dash)? (blog-post)
-    ? Would you like your delite element to be built on a template? Y
-    ? Would you like your delite element to providing theming capabilities? N
-    ? Will your delite element require string internationalization? N
-    ? Will your delite element require pointer management? N
-    ? Do you want to use build version of delite package (instead of source version)? N
+    ? Would you like your delite element to be built on a template? (Y)
+    ? Would you like your delite element to providing theming capabilities? (N)
+    ? Will your delite element require string internationalization? (N)
+    ? Will your delite element require pointer management? (N)
+    ? Do you want to use build version of delite package (instead of source version)? (N)
 
 
 This, as shown in the console output, creates:
