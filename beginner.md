@@ -60,11 +60,7 @@ This is the most basic setup for a widget/custom component, you can view the sam
 in a browser to see what's been created.
 We'll build upon this example HTML as we progress in the tutorial.
 
-Note that we just accepted the default names the `yo` generator created for us. In case there's any confusion, the module name created `TitleWidget` bears
-no relation to the custom element name i.e. `title-widget`, the module `TitleWidget` registers the custom element tag name `title-widget`.
-
-    blurb about using dcl here? i.e. using requirejs we include dcl and delite/register which allows us to create a class
-    via a module. It needs to be explained briefly but hint that you could do it inline in the page, not using a module.
+In case there's any confusion, the module name created `TitleWidget` bears no relation to the custom element name i.e. `title-widget`, the module `TitleWidget` registers the custom element tag name `title-widget`.
 
 ---
 
@@ -214,6 +210,8 @@ This adds a class name to the root node of our custom element (which you can see
 in the `define` the `requirejs-dplugins/css!` plugin to load our css i.e. `"requirejs-dplugins/css!./TitleWidget/css/TitleWidget.css"`.
 This plugin is obviously used to load CSS for our custom element. There's nothing much to say here apart from this is how you individually style
 your components and **[TODO] also at build time i.e. compiling `less` files, you won't load these files individually**.
+
+---
 
 ##Templates
 What we've done so far is obviously a very rudimentary demonstration. We wouldn't expect to programmatically create DOM nodes & this is where
