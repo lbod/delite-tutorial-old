@@ -107,8 +107,8 @@ require(["delite/register", "title-package/TitleWidget"], function (register) {
 Declarative widgets (those created via markup in the page) need to be parsed in order to kick off the lifecycle of creating the widget.
 
 ###Programmatic creation of custom elements
-The generated example in `./samples/TitleWidget.html` shows the declarative creation of custom elements, you can do the same thing
-with programmatic creation
+The generated example in `./samples/TitleWidget.html` shows the declarative creation of custom elements.
+You can do the same thing with programmatic creation:
 
 edit `./samples/TitleWidget.html` i.e.
 
@@ -132,7 +132,7 @@ require(["delite/register", "title-package/TitleWidget"], function (register, Ti
 Note that programmatically created widgets should always call `startup()`. A helper function is provided by `delite/Widget` to place it
 somewhere in the DOM named `placeAt`
 (see the [documentation](https://github.com/ibm-js/delite/blob/master/docs/Widget.md#placement) for it's usage).
-We need to also require the module for the custom element i.e. `"title-package/TitleWidget"` because we need to create a new instance and then call it's methods.
+We need to also require the module for the custom element i.e. `"title-package/TitleWidget"` because we need to create a new instance and then call its methods.
 
 
 The above would render: (default image width 460x242)
@@ -142,24 +142,24 @@ The above would render: (default image width 460x242)
 
 ###A look at the widget lifecycle methods for our simple widget
 If we look at `"title-package/TitleWidget"` we can see two methods have been created for us, `render` and `refreshRendering`.
-`render` is the most simplest of [lifecycle](https://github.com/ibm-js/delite/blob/master/docs/Widget.md#lifecycle)
+`render` is the simplest of [lifecycle](https://github.com/ibm-js/delite/blob/master/docs/Widget.md#lifecycle)
 methods we need to create our widget.
 
 #### `render`
-We normally wouldn't need to create a `render` method, typically we'd use templates to create our widget UI (which will be explained
-later on) but because we aren't currently using a template we need to implement `render` to construct the widget UI for us. <br>
+We normally wouldn't need to create a `render` method; typically we'd use templates to create our widget UI (which will be explained
+later on) but because we aren't currently using a template we need to implement `render` to construct the widget UI for us.
 In our sample `render` method we're adding `<span>title</span>` and `<h1></h1>` elements to our widget as well as assigning a property
 to the widget named `_h1` i.e. via `this.appendChild(this._h = this.ownerDocument.createElement("h1"));` which we can use to update
 it programmatically or declaratively.
 
 
 #### `refreshRendering`
-`refreshRendering` is also a lifecycle method but implemented in `decor/Invalidating` which `delite/Widget` inherits from.
-It's primary concern is to observe changes to properties defined on the widget and update the UI. In your web browser developer tools, if
+`refreshRendering` is also a lifecycle method but implemented in `decor/Invalidating`, which `delite/Widget` inherits from.
+Its purpose is to observe changes to properties defined on the widget and update the UI. In your web browser developer tools, if
 you place a breakpoint in that method and then click the "click to change title" button, you'll see this method is called
 (because the button adds inline JavaScript to update the element's value property).
 
-If we wanted to see what the old value was (and also print it out to the DOM) we can change this method from
+If we wanted to see what the old value was (and also display it to the DOM) we can change this method from
 
 ```js
 refreshRendering: function (props) {
@@ -181,7 +181,7 @@ refreshRendering: function (props) {
 }
 ```
 
-Notice when you first load the page, this method will be called for each widget & if you debug this method when you reload the page
+Notice when you first load the page, this method will be called for each widget and if you set a breakpoint in this method when you reload the page
 you'll see that the `value` property of our widget is contained in the `props` argument. This is because we're setting the `value` property
 on the declarative widget to `value="The Title"` and setting the value property on the programmatic widget to `value : "another custom element title"`.
 If you don't set the `value` property of the widget at construction time, the `value` property of our widget is NOT contained in the `props` argument.
