@@ -183,10 +183,10 @@ refreshRendering: function (props) {
 
 Notice when you first load the page, this method will be called for each widget and if you set a breakpoint in this method when you reload the page
 you'll see that the `value` property of our widget is contained in the `props` argument. This is because we're setting the `value` property
-on the declarative widget to `value="The Title"` and setting the value property on the programmatic widget to `value : "another custom element title"`.
+on the declaratively written widget to `value="The Title"` and setting the value property on the programmatically written widget to `value : "another custom element title"`.
 If you don't set the `value` property of the widget at construction time, the `value` property of our widget is NOT contained in the `props` argument.
 
-Click the 'click to change title button' which will render like:
+Click the 'click to change title button' and the widget will render like:
 
 <img src='./images/custom_element_old_new_props.gif'/>
 
@@ -208,20 +208,20 @@ If we look at the `./TitleWidget.js` custom element module, we see there's a pro
 This adds a class name to the root node of our custom element (which you can see in the DOM using your debugger tools). Also notice we include
 in the `define` the `requirejs-dplugins/css!` plugin to load our css i.e. `"requirejs-dplugins/css!./TitleWidget/css/TitleWidget.css"`.
 This plugin is obviously used to load CSS for our custom element. There's nothing much to say here apart from this is how you individually style
-your components and **[TODO] also at build time i.e. compiling `less` files, you won't load these files individually**.
+your components.
 
 ---
 
 ##Templates
 What we've done so far is obviously a very rudimentary demonstration. We wouldn't expect to programmatically create DOM nodes & this is where
-delite comes into it's own. Out of the box, delite supports templates using an in built implementation of [Handlebars](http://handlebarsjs.com/).
-We won't need to programmatically create DOM nodes in `render`, creating a template will do all the work for us.
+delite comes into it's own. Out of the box, delite supports templates using a built in implementation of [Handlebars](http://handlebarsjs.com/).
+We won't need to programmatically create DOM nodes in `render` because creating a template will do all this work for us.
 
-Note there are some limitations using the `delite/handlebars!` plugin in delite for templating, namely it doesn't support iterators or conditionals
-however in many cases this isn't a limiting factor. Support for this will be explained in a later more advanced tutorial when we discuss
+Note there are some limitations using the `delite/handlebars!` plugin in delite for templating, namely it doesn't support iterators or conditionals.
+However in many cases this isn't a limiting factor. Support for this will be explained in a later more advanced tutorial when we discuss
 [Liaison](https://github.com/ibm-js/liaison). The handlebars template implementation delite uses is primarily focused on performance.
 
-What we've done so far isn't very exciting, so lets try and do something more 'real life', for example a blogging widget.
+What we've done so far isn't very exciting, so let's try and do something more 'real life', for example a blogging widget.
 
 So we'll create a new delite custom element using Yeoman again (rather than modifying what we have already)
 
@@ -234,7 +234,7 @@ Run Yeoman again to create our scaffold
 
     yo delite-element
 
-You'll again be prompted to enter the widget package name & the name of the custom widget element, enter the following choices shown in brackets below
+You'll again be prompted to enter the widget package name and the name of the custom widget element. Set the following choices shown in brackets below
 
     ? What is the name of your delite widget element package? (blogging-package)
     ? What do you want to call your delite widget element (must contain a dash)? (blog-post)
@@ -254,7 +254,7 @@ This, as shown in the console output, creates:
 
 
 ###Handlebars
-If we look at the template we just created `./BlogPost/BlogPost.html` we can see it's created the following:
+If we look at the template Yeoman just created `./BlogPost/BlogPost.html` we can see it's created the following:
 
 ```html
 <template>
@@ -263,10 +263,9 @@ If we look at the template we just created `./BlogPost/BlogPost.html` we can see
 </template>
 ```
 
-All templates must be enclosed in a `<template>` element, we can see all the work we did in the `render` lifecycle method becomes much
-more simple because now we're just dealing with HTML.
-
-We don't need to implement the code in the `render` lifecycle method of the non-templated example e.g. See the `./TitleWidget.js` widget module in the previous example.
+All templates must be enclosed in a `<template>` element. We can see all the work we did in the `render` lifecycle method becomes much
+more simple because now we're just dealing with HTML; actually we don't need to implement a `render` method at all (see the `./TitleWidget.js`
+widget module in the previous example to compare).
 Instead we have:
 
 ```js
@@ -290,12 +289,12 @@ We just need to include the template using the handlebars plugin i.e.
 `"delite/handlebars!./BlogPost/BlogPost.html"` and assign the resolved template to the `template` property of our widget i.e. `template: template`.
 
 ####Using handlebars templates
-Imagining we need to implement this blogging widget, the widget needs to show the blog title (which we've already done with `{{value}}`, a date it was
+Imagining we need to implement this blogging widget, the widget needs to show the blog title (which we've already done with `{{value}}`, the date it was
 published, the author and the content of the blog.
 
 Let's make some changes:
 #####Template
-Change our template to add new properties for a blog author, when the blog was published and the text of the blog
+Change our template to add new properties for the blog author, when the blog was published and the text of the blog
 in `./BlogPost/BlogPost.html`:
 ```html
 <template>
@@ -307,7 +306,7 @@ in `./BlogPost/BlogPost.html`:
 </template>
 ```
 #####Widget
-So we've added some new properties, which you see is very easy to do, all we need to do now is map those properties in the widget :
+So we've added some new properties, which you see is very easy to do. All we need to do now is map those properties in the widget:
 
 ```js
 define([
@@ -328,7 +327,7 @@ define([
 
 ```
 
-Note that I've added a default value for `publishDate`, just in case setting a date was optional & it'll just default to today's date.
+Note that I've added a default value for `publishDate`, to make setting the date optional; if unspecified, it will default to today's date.
 
 #####Sample usage
 So now if you change the body content of `./samples/BlogPost.html` to the following:
@@ -369,11 +368,11 @@ you'll see that any HTML tags added in the attribute value are escaped and not r
 <button onclick="element.value='Now sleeping!'; event.target.disabled=true">click to change title</button>
 ```
 
-As explained in the `Container` documentation, it's to be used as a base class for widgets which contain other widgets. However it's also useful for our
+As explained in the `Container` documentation, it's to be used as a base class for widgets that contain content; therefore it's also useful for our
 intentions where we want to add arbitrary HTML for the `articleContent`.
 
 #####Widget
-Lets update our widget to use this:
+Let's update our widget to use this:
 
 ```js
 define([
@@ -383,7 +382,7 @@ define([
 	"delite/handlebars!./BlogPost/BlogPost.html",
     "requirejs-dplugins/css!./BlogPost/css/BlogPost.css"
 ], function (register, Widget, Container, template) {
-	return register("blog-post", [HTMLElement, Widget, Container], {
+	return register("blog-post", [HTMLElement, Container], {
 		baseClass: "blog-post",
 		value: "",
 		publishDate: new Date().toString(),
@@ -394,7 +393,8 @@ define([
 
 ```
 
-We've extended our widget using `delite/Container` (and removed the `articleContent` property which we don't need anymore).
+We've extended our widget using `delite/Container` and removed the `articleContent` property which we don't need anymore.
+We also only need to extend `delite/Container` because it extends `delite/Widget`.
 
 #####Widget template
 Update ./BlogPost/BlogPost.html` to the following:
@@ -410,7 +410,7 @@ Update ./BlogPost/BlogPost.html` to the following:
 ```
 
 Notice the `attach-point="containerNode"` attribute. This is a special 'pointer' to a DOM node which is used by `delite/Container`. When you inherit from
-`delite/Container`, it adds a property to our widget named `containerNode` and this maps to any HTML (or widgets) as children of our widget.
+`delite/Container`, it adds a property to our widget named `containerNode` and this maps any HTML (or widgets) as children of our widget.
 
 #####Sample usage
 Change the body content of `./samples/BlogPost.html` to the following:
