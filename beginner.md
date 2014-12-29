@@ -337,7 +337,7 @@ So now if you change the body content of `./samples/BlogPost.html` to the follow
 <button onclick="element.value='Now sleeping!'; event.target.disabled=true">click to change title</button>
 ```
 
-And updating the template CSS `./BlogPost/css/BlogPost.css` to make it slightly more interesting to:
+And updating the template CSS `./BlogPost/css/BlogPost.css` to make it slightly more interesting too:
 
 ```css
 /* style for the custom element itself */
